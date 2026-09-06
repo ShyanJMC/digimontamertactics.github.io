@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 430" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">Los seis pilares de Tamer Tactics</title>
+  <desc id="dsc">Gating de Tamer, grupos, alcance de efectos por grupo, ataque a seguridad por grupo, todo el board es blanco valido, y proteccion de una carta por turno.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101E3A"/><stop offset="1" stop-color="#0C1730"/></linearGradient>
+  </defs>
+  <rect width="1140" height="430" rx="14" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1140" height="5" fill="#F26B1D"/>
+  <text x="40" y="46" font-family="'Segoe UI',Arial,sans-serif" font-size="16" font-weight="800" letter-spacing="3" fill="#EAF1FF">LOS 6 PILARES</text>
+
+  <g font-family="'Segoe UI',Arial,sans-serif">
+    <!-- card 1 -->
+    <g transform="translate(40,70)">
+      <rect width="340" height="105" rx="10" fill="#1A2C4E" stroke="#F26B1D" stroke-width="2"/>
+      <text x="18" y="34" font-size="22" font-weight="800" fill="#FFC96F">1</text>
+      <text x="52" y="34" font-size="15" font-weight="800" fill="#EAF1FF">GATING DE TAMER</text>
+      <text x="18" y="60" font-size="12" fill="#9DB2D6">No jugas ningun Digimon del mazo</text>
+      <text x="18" y="78" font-size="12" fill="#9DB2D6">principal hasta tener 1 Tamer en batalla.</text>
+      <text x="18" y="96" font-size="12" fill="#9DB2D6">Siempre hay al menos uno (piso duro).</text>
+    </g>
+    <!-- card 2 -->
+    <g transform="translate(400,70)">
+      <rect width="340" height="105" rx="10" fill="#1A2C4E" stroke="#F26B1D" stroke-width="2"/>
+      <text x="18" y="34" font-size="22" font-weight="800" fill="#FFC96F">2</text>
+      <text x="52" y="34" font-size="15" font-weight="800" fill="#EAF1FF">GRUPOS</text>
+      <text x="18" y="60" font-size="12" fill="#9DB2D6">Cada Digimon que entra se une a un</text>
+      <text x="18" y="78" font-size="12" fill="#9DB2D6">Tamer propio. Ese Tamer + sus Digimon</text>
+      <text x="18" y="96" font-size="12" fill="#9DB2D6">son un grupo: un board independiente.</text>
+    </g>
+    <!-- card 3 -->
+    <g transform="translate(760,70)">
+      <rect width="340" height="105" rx="10" fill="#1A2C4E" stroke="#F26B1D" stroke-width="2"/>
+      <text x="18" y="34" font-size="22" font-weight="800" fill="#FFC96F">3</text>
+      <text x="52" y="34" font-size="15" font-weight="800" fill="#EAF1FF">EFECTOS = TU GRUPO</text>
+      <text x="18" y="60" font-size="12" fill="#9DB2D6">"Tus Digimon" solo alcanza a los del</text>
+      <text x="18" y="78" font-size="12" fill="#9DB2D6">mismo grupo que la fuente. Digivolucion</text>
+      <text x="18" y="96" font-size="12" fill="#9DB2D6">y DNA: materiales del mismo grupo.</text>
+    </g>
+    <!-- card 4 -->
+    <g transform="translate(40,190)">
+      <rect width="340" height="105" rx="10" fill="#1A2C4E" stroke="#3FC8DE" stroke-width="2"/>
+      <text x="18" y="34" font-size="22" font-weight="800" fill="#3FC8DE">4</text>
+      <text x="52" y="34" font-size="15" font-weight="800" fill="#EAF1FF">SEGURIDAD POR GRUPO</text>
+      <text x="18" y="60" font-size="12" fill="#9DB2D6">1 ataque a la pila de seguridad por</text>
+      <text x="18" y="78" font-size="12" fill="#9DB2D6">grupo, por turno &#8212; no por Digimon.</text>
+      <text x="18" y="96" font-size="12" fill="#9DB2D6">Ahi muere el enjambre de un solo grupo.</text>
+    </g>
+    <!-- card 5 -->
+    <g transform="translate(400,190)">
+      <rect width="340" height="105" rx="10" fill="#1A2C4E" stroke="#3FC8DE" stroke-width="2"/>
+      <text x="18" y="34" font-size="22" font-weight="800" fill="#3FC8DE">5</text>
+      <text x="52" y="34" font-size="15" font-weight="800" fill="#EAF1FF">TODO EL BOARD ES BLANCO</text>
+      <text x="18" y="60" font-size="12" fill="#9DB2D6">Podes atacar cualquier Digimon rival,</text>
+      <text x="18" y="78" font-size="12" fill="#9DB2D6">este suspendido o no. Techo: 3 (+1)</text>
+      <text x="18" y="96" font-size="12" fill="#9DB2D6">ataques a Digimon/Tamer por turno.</text>
+    </g>
+    <!-- card 6 -->
+    <g transform="translate(760,190)">
+      <rect width="340" height="105" rx="10" fill="#1A2C4E" stroke="#69D95B" stroke-width="2"/>
+      <text x="18" y="34" font-size="22" font-weight="800" fill="#69D95B">6</text>
+      <text x="52" y="34" font-size="15" font-weight="800" fill="#EAF1FF">PROTECCION 1/TURNO</text>
+      <text x="18" y="60" font-size="12" fill="#9DB2D6">Blindas 1 carta propia por turno</text>
+      <text x="18" y="78" font-size="12" fill="#9DB2D6">(jugada / evolucion / link / re-agrupada).</text>
+      <text x="18" y="96" font-size="12" fill="#9DB2D6">Intocable un turno. Max 2 veces por linea.</text>
+    </g>
+  </g>
+
+  <line x1="40" y1="322" x2="1100" y2="322" stroke="#2E4C7E" stroke-width="1"/>
+  <text x="40" y="350" font-family="'Segoe UI',Arial,sans-serif" font-size="13" fill="#EAF1FF">El resultado: para ganar hay que <tspan fill="#FFC96F" font-weight="800">desarrollar board y evolucionar</tspan>, no solo tirar cuerpos baratos a la seguridad.</text>
+  <text x="40" y="376" font-family="'Segoe UI',Arial,sans-serif" font-size="13" fill="#8FA6CC">Y para defenderse ya no alcanza con "no hacer nada": la unica defensa pasiva real es tener mas DP.</text>
+  <text x="40" y="402" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#8FA6CC">Detalle completo y casos borde: TAMER_TACTICS.md</text>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 160" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">El Memory Gauge</title>
+  <desc id="dsc">Recurso compartido de -10 a +10 con el 0 en el centro. Gastar de mas cruza el marcador al lado del rival y termina tu turno.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101E3A"/><stop offset="1" stop-color="#0C1730"/></linearGradient>
+  </defs>
+  <rect width="980" height="160" rx="14" fill="url(#bg)"/>
+  <rect x="0" y="0" width="980" height="5" fill="#F26B1D"/>
+  <text x="40" y="40" font-family="'Segoe UI',Arial,sans-serif" font-size="15" font-weight="800" letter-spacing="2" fill="#EAF1FF">MEMORY GAUGE  (sin cambios respecto al juego base)</text>
+
+  <g font-family="'Segoe UI',Arial,sans-serif">
+    <rect x="60" y="66" width="430" height="34" fill="#12324A" stroke="#3FC8DE" stroke-width="2"/>
+    <rect x="490" y="66" width="430" height="34" fill="#2A1E3E" stroke="#E23B4E" stroke-width="2"/>
+    <line x1="490" y1="58" x2="490" y2="108" stroke="#FFC96F" stroke-width="3"/>
+    <polygon points="490,52 481,40 499,40" fill="#FFC96F"/>
+    <text x="275" y="88" text-anchor="middle" font-size="13" font-weight="700" fill="#3FC8DE">TU MEMORIA</text>
+    <text x="705" y="88" text-anchor="middle" font-size="13" font-weight="700" fill="#E23B4E">MEMORIA DEL RIVAL</text>
+    <text x="60" y="124" font-size="11" fill="#8FA6CC">10</text>
+    <text x="486" y="124" font-size="11" fill="#8FA6CC">0</text>
+    <text x="910" y="124" font-size="11" fill="#8FA6CC">10</text>
+  </g>
+  <text x="40" y="150" font-family="'Segoe UI',Arial,sans-serif" font-size="12.5" fill="#8FA6CC">En cuanto el marcador queda del lado del rival y no hay nada pendiente, tu turno termina. Jugar de mas = regalar el turno.</text>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 400" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">Construccion de mazo en Tamer Tactics</title>
+  <desc id="dsc">Mazo principal de 50 cartas solo con Digimon y Option, y una pila Tamer mas Digi-Egg de 6 a 12 cartas con un Tamer garantizado que arranca en el area de batalla.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101E3A"/><stop offset="1" stop-color="#0C1730"/></linearGradient>
+  </defs>
+  <rect width="980" height="400" rx="14" fill="url(#bg)"/>
+  <rect x="0" y="0" width="980" height="5" fill="#F26B1D"/>
+  <text x="40" y="52" font-family="'Segoe UI',Arial,sans-serif" font-size="22" font-weight="800" letter-spacing="2" fill="#EAF1FF">CONSTRUCCION DE MAZO</text>
+
+  <!-- Main deck -->
+  <g transform="translate(90,96)">
+    <rect x="16" y="16" width="220" height="150" rx="10" fill="#1A2C4E"/>
+    <rect x="8" y="8" width="220" height="150" rx="10" fill="#20365D"/>
+    <rect x="0" y="0" width="220" height="150" rx="10" fill="#26406C" stroke="#3FC8DE" stroke-width="2"/>
+    <text x="110" y="60" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2" fill="#9DB2D6">MAZO PRINCIPAL</text>
+    <text x="110" y="108" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="46" font-weight="800" fill="#FFC96F">50</text>
+    <text x="110" y="196" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="13" fill="#9DB2D6">Solo Digimon + Option</text>
+    <text x="110" y="216" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="13" fill="#9DB2D6">Sin Tamers  ·  max 4 copias</text>
+  </g>
+
+  <!-- Tamer + Digi-Egg pile -->
+  <g transform="translate(560,96)">
+    <rect x="16" y="16" width="230" height="150" rx="10" fill="#1A2C4E"/>
+    <rect x="8" y="8" width="230" height="150" rx="10" fill="#20365D"/>
+    <rect x="0" y="0" width="230" height="150" rx="10" fill="#26406C" stroke="#69D95B" stroke-width="2"/>
+    <text x="115" y="42" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1" fill="#9DB2D6">PILA TAMER + DIGI-EGG</text>
+    <text x="115" y="92" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="40" font-weight="800" fill="#FFC96F">6&#8211;12</text>
+    <text x="115" y="124" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="13" fill="#9DB2D6">4&#8211;7 Tamers  ·  2&#8211;5 Digi-Egg</text>
+    <!-- highlighted top card -->
+    <g transform="translate(-6,150)">
+      <rect x="0" y="0" width="242" height="46" rx="8" fill="#F26B1D"/>
+      <text x="121" y="21" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="12.5" font-weight="800" fill="#0C1730">1 TAMER GARANTIZADO</text>
+      <text x="121" y="37" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="11.5" font-weight="600" fill="#2A1400">arranca en el area de batalla + su [On Play]</text>
+    </g>
+  </g>
+
+  <!-- arrow -->
+  <g stroke="#3FC8DE" stroke-width="3" fill="#3FC8DE">
+    <line x1="350" y1="176" x2="540" y2="176"/>
+    <polygon points="540,176 524,167 524,185"/>
+  </g>
+  <text x="445" y="164" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#9DB2D6">reemplaza al</text>
+  <text x="445" y="200" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="12" fill="#9DB2D6">Digi-Egg deck normal</text>
+
+  <text x="490" y="372" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="13" fill="#8FA6CC">Los Tamers salieron del mazo principal &#8594; las 50 cartas quedan como Digimon / Option puros (mas consistencia).</text>
+</svg>

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 520" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">El sistema de grupos de Tamer Tactics</title>
+  <desc id="dsc">Cada Tamer propio lidera un grupo de Digimon. Cada grupo puede hacer un unico ataque a la pila de seguridad rival por turno. Mas grupos dan mas ataques, pero cada Tamer nuevo es lento y cuesta memoria.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101E3A"/><stop offset="1" stop-color="#0C1730"/></linearGradient>
+  </defs>
+  <rect width="1140" height="520" rx="14" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1140" height="5" fill="#F26B1D"/>
+
+  <text x="40" y="46" font-family="'Segoe UI',Arial,sans-serif" font-size="16" font-weight="800" letter-spacing="3" fill="#3FC8DE">TU AREA DE BATALLA</text>
+  <text x="1100" y="46" text-anchor="end" font-family="'Segoe UI',Arial,sans-serif" font-size="16" font-weight="800" letter-spacing="3" fill="#E23B4E">RIVAL</text>
+  <line x1="40" y1="58" x2="1100" y2="58" stroke="#2E4C7E" stroke-width="1"/>
+
+  <!-- GROUPS -->
+  <g font-family="'Segoe UI',Arial,sans-serif">
+    <!-- group template repeated 3x -->
+    <g transform="translate(60,90)">
+      <text x="0" y="0" font-size="12" font-weight="700" letter-spacing="2" fill="#8FA6CC">GRUPO 1</text>
+      <path d="M40 12 L74 32 L74 72 L40 92 L6 72 L6 32 Z" fill="#26406C" stroke="#F26B1D" stroke-width="3"/>
+      <text x="40" y="49" text-anchor="middle" font-size="11" font-weight="800" fill="#FFC96F">TAMER</text>
+      <text x="40" y="65" text-anchor="middle" font-size="9" fill="#9DB2D6">lider</text>
+      <rect x="96" y="18" width="66" height="66" rx="7" fill="#1E3357" stroke="#3FC8DE" stroke-width="2"/>
+      <rect x="172" y="18" width="66" height="66" rx="7" fill="#1E3357" stroke="#3FC8DE" stroke-width="2"/>
+      <text x="169" y="105" text-anchor="middle" font-size="10" fill="#8FA6CC">Digimon del grupo (cualquier cantidad)</text>
+    </g>
+    <g transform="translate(60,230)">
+      <text x="0" y="0" font-size="12" font-weight="700" letter-spacing="2" fill="#8FA6CC">GRUPO 2</text>
+      <path d="M40 12 L74 32 L74 72 L40 92 L6 72 L6 32 Z" fill="#26406C" stroke="#F26B1D" stroke-width="3"/>
+      <text x="40" y="49" text-anchor="middle" font-size="11" font-weight="800" fill="#FFC96F">TAMER</text>
+      <rect x="96" y="18" width="66" height="66" rx="7" fill="#1E3357" stroke="#3FC8DE" stroke-width="2"/>
+      <rect x="172" y="18" width="66" height="66" rx="7" fill="#1E3357" stroke="#3FC8DE" stroke-width="2"/>
+      <rect x="248" y="18" width="66" height="66" rx="7" fill="#1E3357" stroke="#3FC8DE" stroke-width="2"/>
+    </g>
+    <g transform="translate(60,370)">
+      <text x="0" y="0" font-size="12" font-weight="700" letter-spacing="2" fill="#8FA6CC">GRUPO 3</text>
+      <text x="120" y="4" font-size="10" fill="#69D95B">recien formado &#8594; lento y cuesta 2 de memoria</text>
+      <path d="M40 12 L74 32 L74 72 L40 92 L6 72 L6 32 Z" fill="#26406C" stroke="#F26B1D" stroke-width="3" stroke-dasharray="5 4"/>
+      <text x="40" y="49" text-anchor="middle" font-size="11" font-weight="800" fill="#FFC96F">TAMER</text>
+      <rect x="96" y="18" width="66" height="66" rx="7" fill="#152441" stroke="#2E4C7E" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- arrows to security -->
+  <g stroke="#F26B1D" stroke-width="3" fill="#F26B1D">
+    <path d="M330 155 C 560 155, 640 250, 858 250" fill="none"/>
+    <path d="M400 300 C 600 300, 680 262, 858 262" fill="none"/>
+    <path d="M360 430 C 620 430, 700 288, 858 288" fill="none"/>
+    <polygon points="858,250 840,241 840,259"/>
+    <polygon points="858,262 840,253 840,271"/>
+    <polygon points="858,288 840,279 840,297"/>
+  </g>
+  <text x="600" y="150" font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="700" fill="#FFC96F">1 ataque a seguridad</text>
+  <text x="600" y="168" font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="700" fill="#FFC96F">por grupo, por turno</text>
+
+  <!-- security stack -->
+  <g transform="translate(880,150)">
+    <rect x="0" y="0" width="150" height="40" rx="6" fill="#2A1E3E" stroke="#E23B4E" stroke-width="2"/>
+    <rect x="0" y="30" width="150" height="40" rx="6" fill="#2A1E3E" stroke="#E23B4E" stroke-width="2"/>
+    <rect x="0" y="60" width="150" height="40" rx="6" fill="#2A1E3E" stroke="#E23B4E" stroke-width="2"/>
+    <rect x="0" y="90" width="150" height="40" rx="6" fill="#2A1E3E" stroke="#E23B4E" stroke-width="2"/>
+    <rect x="0" y="120" width="150" height="40" rx="6" fill="#2A1E3E" stroke="#E23B4E" stroke-width="2"/>
+    <text x="75" y="188" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="14" font-weight="800" letter-spacing="1" fill="#E23B4E">SEGURIDAD  x5</text>
+  </g>
+
+  <line x1="40" y1="452" x2="1100" y2="452" stroke="#2E4C7E" stroke-width="1"/>
+  <text x="40" y="478" font-family="'Segoe UI',Arial,sans-serif" font-size="13" fill="#EAF1FF">3 grupos  &#8594;  hasta 3 ataques a seguridad por turno.  El 2&#186; Tamer cuesta 2 de memoria; el 3&#186;, mas tiempo.</text>
+  <text x="40" y="500" font-family="'Segoe UI',Arial,sans-serif" font-size="13" fill="#8FA6CC">Ataque contra Digimon o Tamer rival: todo el board es blanco valido, pero maximo 3 (+1) por turno.</text>
+</svg>
