@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tamer Tactics — formato fan-made para el Digimon Card Game</title>
+<meta name="description" content="Formato casero para el Digimon Card Game 2020+: cada Tamer lidera un grupo, un ataque a la seguridad por grupo, y la única defensa pasiva real es evolucionar. Sin prohibir una sola carta.">
+<meta name="theme-color" content="#0A1226">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2l12 7v14l-12 7L4 23V9z' fill='%23F2551D'/%3E%3Cpath d='M17 8l-7 10h5l-1 6 7-10h-5z' fill='%23FFC845'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tamer Tactics — formato fan-made para el Digimon Card Game">
+<meta property="og:description" content="Cada Tamer lidera un grupo. Un ataque a la seguridad por grupo. Evolucionar es la única defensa real. Sin banear nada.">
+<meta property="og:image" content="https://shyanjmc.github.io/digimon-tamer_tactics/assets/banner.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A1226; --bg-2:#0E1A33; --panel:#13233F; --panel-2:#182F52;
+  --line:#27406B; --line-soft:#1E3357;
+  --ink:#EAF1FF; --muted:#93A7CC; --dim:#6E85AC;
+  --orange:#FF8A3D; --orange-deep:#F2551D; --red:#E5384E;
+  --cyan:#37C6DE; --green:#5FD85B; --yellow:#FFC845; --purple:#9B6BFF;
+  --accent-grad:linear-gradient(135deg,#FFB24D 0%,#F2551D 55%,#E5384E 100%);
+  --hex:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='48' viewBox='0 0 56 48'%3E%3Cpath d='M14 0H42L56 24 42 48H14L0 24Z' fill='none' stroke='%2327406B' stroke-width='1'/%3E%3C/svg%3E");
+  --maxw:1120px;
+  --nav-h:66px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 18px);-webkit-text-size-adjust:100%}
+html.no-scroll{overflow:hidden}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{font-family:"Chakra Petch",Inter,sans-serif;font-weight:700;line-height:1.12;margin:0}
+p{margin:0 0 1rem}
+::selection{background:var(--orange-deep);color:#0A1226}
+
+.skip{position:absolute;left:-999px;top:0;background:var(--orange-deep);color:#0A1226;padding:.6rem 1rem;font-weight:700;z-index:200}
+.skip:focus{left:12px;top:12px}
+
+.container{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(1rem,4vw,2rem)}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:fixed;inset:0 0 auto 0;height:var(--nav-h);z-index:100;
+  display:flex;align-items:center;
+  background:rgba(10,18,38,.82);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line-soft);
+}
+.nav .container{display:flex;align-items:center;gap:1.2rem;width:100%}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:"Chakra Petch",sans-serif;font-weight:700;letter-spacing:.06em;color:var(--ink);font-size:1.02rem}
+.brand:hover{text-decoration:none}
+.brand svg{width:30px;height:30px;flex:none}
+.brand .v{color:var(--orange);font-size:.72rem;border:1px solid var(--orange-deep);padding:.05rem .35rem;border-radius:3px;letter-spacing:.04em}
+.nav-spacer{flex:1}
+.nav-links{display:flex;align-items:center;gap:.35rem;list-style:none;margin:0;padding:0}
+.nav-links a{
+  color:var(--muted);font-size:.82rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
+  padding:.5rem .7rem;border-radius:4px;white-space:nowrap;
+}
+.nav-links a:hover{color:var(--ink);text-decoration:none;background:var(--panel)}
+.nav-links a.current{color:var(--orange)}
+.nav-gh{
+  display:inline-flex;align-items:center;gap:.45rem;
+  color:var(--ink);font-weight:700;font-size:.8rem;letter-spacing:.04em;
+  border:1px solid var(--line);padding:.5rem .85rem;
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+}
+.nav-gh:hover{border-color:var(--orange);color:var(--orange);text-decoration:none}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--ink);width:40px;height:38px;border-radius:4px;font-size:1.1rem;cursor:pointer}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:calc(var(--nav-h) + clamp(3rem,9vw,6rem)) 0 clamp(3rem,8vw,5.5rem);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:var(--hex);opacity:.5;mask-image:linear-gradient(180deg,#000 0%,transparent 78%)}
+.hero::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(60% 55% at 12% 8%,rgba(242,85,29,.22),transparent 60%),
+  radial-gradient(55% 60% at 92% 100%,rgba(55,198,222,.16),transparent 62%);pointer-events:none}
+.hero .container{position:relative;z-index:1;max-width:900px}
+.kicker{
+  display:inline-block;font-family:"Chakra Petch",sans-serif;font-weight:600;
+  font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--cyan);
+  margin-bottom:1.1rem;
+}
+.hero h1{
+  font-size:clamp(2.7rem,8.5vw,5.7rem);letter-spacing:.015em;margin:0 0 1.2rem;
+  background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 3px 24px rgba(242,85,29,.25));
+}
+.hero .lede{font-size:clamp(1.05rem,2.4vw,1.4rem);color:var(--ink);max-width:44ch;margin-bottom:.6rem}
+.hero .sub{color:var(--muted);margin-bottom:2rem}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem}
+.chip{
+  font-family:"Chakra Petch",sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  padding:.4rem .8rem;border:1px solid var(--line);color:var(--muted);
+  clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));
+}
+.chip.hot{border-color:var(--orange-deep);color:var(--orange)}
+.cta{display:flex;flex-wrap:wrap;gap:.9rem}
+.btn{
+  --cut:11px;display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
+  font-family:"Chakra Petch",sans-serif;font-weight:700;font-size:.92rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:.85rem 1.5rem;border:1px solid transparent;
+  clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut));
+  transition:transform .12s ease,filter .12s ease,background .12s ease,color .12s ease;
+}
+.btn-primary{background:var(--accent-grad);color:#0A1226}
+.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.08);text-decoration:none}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none;transform:translateY(-2px)}
+
+/* ---------- SECTIONS ---------- */
+section{padding:clamp(3.4rem,8vw,5.6rem) 0;position:relative}
+section + section{border-top:1px solid var(--line-soft)}
+.sec-head{margin-bottom:2.4rem;max-width:60ch}
+.sec-head .kicker{margin-bottom:.7rem}
+.sec-head h2{font-size:clamp(1.8rem,4.6vw,2.7rem);letter-spacing:.01em}
+.sec-head .bar{display:block;width:66px;height:4px;margin-top:1rem;background:var(--accent-grad);
+  clip-path:polygon(0 0,100% 0,calc(100% - 6px) 100%,0 100%)}
+.lead{font-size:1.08rem;color:var(--muted);max-width:62ch}
+
+/* generic panel */
+.panel{
+  background:linear-gradient(180deg,var(--panel) 0%,var(--bg-2) 100%);
+  border:1px solid var(--line);
+  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));
+  padding:clamp(1.2rem,3vw,2rem);
+}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);background:var(--bg-2)}
+table.data{width:100%;border-collapse:collapse;min-width:560px;font-size:.94rem}
+table.data th,table.data td{text-align:left;padding:.8rem 1rem;border-bottom:1px solid var(--line-soft);vertical-align:top}
+table.data thead th{
+  font-family:"Chakra Petch",sans-serif;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+  color:#0A1226;background:var(--accent-grad);border-bottom:none;
+}
+table.data tbody tr:hover{background:rgba(55,198,222,.05)}
+table.data td strong{color:var(--ink)}
+table.data .base{color:var(--dim)}
+table.data .tt{color:var(--orange)}
+
+/* image figure */
+figure.diagram{margin:0}
+figure.diagram img{width:100%;border:1px solid var(--line);background:var(--bg-2)}
+figure.diagram figcaption{margin-top:.7rem;font-size:.85rem;color:var(--dim)}
+
+.evo-strip{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;font-family:"Chakra Petch",sans-serif;
+  font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:1.4rem 0 0}
+.evo-strip b{color:var(--orange);font-weight:700}
+.evo-strip span{color:var(--line)}
+
+/* bullets */
+.idea-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:start}
+ul.spark{list-style:none;margin:0;padding:0;display:grid;gap:.9rem}
+ul.spark li{position:relative;padding-left:1.6rem;color:var(--muted)}
+ul.spark li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;background:var(--orange-deep);
+  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+ul.spark li strong{color:var(--ink)}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.pillar{background:linear-gradient(180deg,var(--panel) 0%,var(--bg-2) 100%);border:1px solid var(--line);
+  padding:1.5rem 1.35rem 1.4rem;
+  clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
+  transition:transform .14s ease,border-color .14s ease}
+.pillar:hover{transform:translateY(-4px);border-color:var(--orange)}
+.pillar-num{display:flex;align-items:center;justify-content:center;width:46px;height:52px;margin-bottom:1rem;
+  font-family:"Chakra Petch",sans-serif;font-weight:700;font-size:1.35rem;color:var(--ink);
+  background:var(--bg);border:2px solid var(--orange-deep);
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.pillar-num[data-accent="cyan"]{border-color:var(--cyan)}
+.pillar-num[data-accent="green"]{border-color:var(--green)}
+.pillar h3{font-size:1.06rem;margin-bottom:.5rem;letter-spacing:.02em}
+.pillar p{font-size:.92rem;color:var(--muted);margin:0}
+
+.note{border-left:3px solid var(--orange-deep);background:var(--bg-2);padding:1rem 1.2rem;color:var(--muted);font-size:.95rem;margin-top:2rem}
+.note strong{color:var(--ink)}
+
+/* two-col media */
+.media-2{display:grid;grid-template-columns:1fr;gap:1.4rem}
+
+/* docs */
+.docs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.doc-card{
+  display:flex;flex-direction:column;gap:.55rem;background:linear-gradient(180deg,var(--panel) 0%,var(--bg-2) 100%);
+  border:1px solid var(--line);padding:1.4rem 1.3rem 1.3rem;color:var(--ink);
+  clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
+  transition:transform .14s ease,border-color .14s ease}
+.doc-card:hover{transform:translateY(-4px);border-color:var(--orange);text-decoration:none}
+.doc-card .dtag{font-family:"Chakra Petch",sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+.doc-card[data-accent="orange"] .dtag{color:var(--orange)}
+.doc-card[data-accent="green"] .dtag{color:var(--green)}
+.doc-card[data-accent="muted"] .dtag{color:var(--dim)}
+.doc-card h3{font-size:1.05rem;letter-spacing:.01em}
+.doc-card p{font-size:.88rem;color:var(--muted);margin:0;flex:1}
+.doc-card .go{font-family:"Chakra Petch",sans-serif;font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.doc-card:hover .go{color:var(--orange)}
+.docs-hint{margin-top:1.2rem;font-size:.85rem;color:var(--dim)}
+
+/* roadmap */
+.road{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.road li{display:grid;grid-template-columns:34px 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line-soft)}
+.road li:last-child{border-bottom:none}
+.road .mk{font-size:1.1rem;line-height:1.4}
+.road b{font-family:"Chakra Petch",sans-serif;letter-spacing:.03em}
+.road .done b{color:var(--green)}
+.road .now b{color:var(--yellow)}
+.road .todo b{color:var(--dim)}
+.road p{margin:.2rem 0 0;color:var(--muted);font-size:.92rem}
+
+/* footer */
+footer{background:var(--bg-2);border-top:1px solid var(--line);padding:3rem 0 2.4rem;position:relative}
+footer::before{content:"";position:absolute;inset:0;background-image:var(--hex);opacity:.35;mask-image:linear-gradient(180deg,#000,transparent 60%)}
+footer .container{position:relative}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+footer h4{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+footer a{color:var(--muted);font-size:.9rem}
+footer a:hover{color:var(--cyan)}
+.legal{font-size:.82rem;color:var(--dim);border-top:1px solid var(--line-soft);padding-top:1.6rem;line-height:1.7}
+.legal strong{color:var(--muted)}
+.foot-sig{margin-top:1.2rem;font-family:"Chakra Petch",sans-serif;font-size:.8rem;letter-spacing:.08em;color:var(--dim)}
+
+/* ---------- READER MODAL ---------- */
+.reader{position:fixed;inset:0;z-index:150;display:flex;align-items:flex-start;justify-content:center;
+  padding:clamp(.6rem,4vw,3rem) 1rem;background:rgba(4,9,20,.78);backdrop-filter:blur(4px)}
+.reader[hidden]{display:none}
+.reader-panel{width:min(880px,100%);max-height:100%;display:flex;flex-direction:column;
+  background:var(--bg-2);border:1px solid var(--line);
+  clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))}
+.reader-head{display:flex;align-items:center;gap:1rem;padding:1rem 1.3rem;border-bottom:1px solid var(--line-soft);background:var(--panel)}
+.reader-head h2{font-size:1.05rem;flex:1;letter-spacing:.02em}
+.reader-actions{display:flex;align-items:center;gap:.6rem}
+.reader-actions .btn{--cut:8px;padding:.5rem .9rem;font-size:.76rem}
+.reader-close{background:none;border:1px solid var(--line);color:var(--ink);width:36px;height:34px;border-radius:4px;cursor:pointer;font-size:.9rem}
+.reader-close:hover{border-color:var(--red);color:var(--red)}
+.reader-body{overflow-y:auto;padding:clamp(1.1rem,3vw,2.2rem)}
+.reader-status{color:var(--muted);font-family:"Chakra Petch",sans-serif;letter-spacing:.04em}
+
+/* rendered markdown */
+.md{color:var(--ink);font-size:.96rem}
+.md > *:first-child{margin-top:0}
+.md h1,.md h2,.md h3,.md h4{font-family:"Chakra Petch",sans-serif;margin:1.8rem 0 .8rem;line-height:1.2}
+.md h1{font-size:1.7rem;padding-bottom:.4rem;border-bottom:2px solid var(--orange-deep)}
+.md h2{font-size:1.32rem;color:var(--ink);padding-bottom:.3rem;border-bottom:1px solid var(--line-soft)}
+.md h3{font-size:1.08rem;color:var(--orange)}
+.md h4{font-size:.98rem;color:var(--cyan)}
+.md p,.md li{color:#D6E2F7}
+.md a{color:var(--cyan)}
+.md strong{color:#fff}
+.md ul,.md ol{padding-left:1.3rem}
+.md li{margin:.3rem 0}
+.md code{background:#0A1226;border:1px solid var(--line-soft);padding:.1rem .35rem;border-radius:3px;font-size:.86em;color:var(--yellow)}
+.md pre{background:#0A1226;border:1px solid var(--line-soft);padding:1rem;overflow-x:auto;border-radius:4px}
+.md pre code{background:none;border:none;padding:0;color:#CFE3FF}
+.md blockquote{margin:1rem 0;padding:.6rem 1rem;border-left:3px solid var(--orange-deep);background:#0A1226;color:var(--muted)}
+.md hr{border:none;border-top:1px solid var(--line-soft);margin:2rem 0}
+.md table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9rem;display:block;overflow-x:auto}
+.md th,.md td{border:1px solid var(--line-soft);padding:.5rem .7rem;text-align:left;vertical-align:top}
+.md th{background:var(--panel);font-family:"Chakra Petch",sans-serif;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--cyan)}
+.md img{border:1px solid var(--line);margin:1rem 0;background:var(--bg-2)}
+.md details{border:1px solid var(--line-soft);background:#0A1226;padding:.6rem 1rem;margin:.6rem 0;border-radius:4px}
+.md summary{cursor:pointer;font-weight:600;color:var(--ink)}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:900px){
+  .pillars,.docs{grid-template-columns:repeat(2,1fr)}
+  .idea-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .nav-links{
+    position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:rgba(10,18,38,.98);border-bottom:1px solid var(--line);padding:.5rem;display:none
+  }
+  .nav.open .nav-links{display:flex}
+  .nav-links a{padding:.85rem 1rem}
+  .nav-toggle{display:block}
+  .nav-gh{display:none}
+  .pillars,.docs{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#que-es">Saltar al contenido</a>
+
+<header class="nav" id="nav">
+  <div class="container">
+    <a class="brand" href="#top" aria-label="Tamer Tactics — inicio">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2l12 7v14l-12 7L4 23V9z" fill="none" stroke="#F2551D" stroke-width="2.4"/><text x="16" y="21" text-anchor="middle" font-family="Chakra Petch,sans-serif" font-size="12" font-weight="700" fill="#FFC845">TT</text></svg>
+      <span>TAMER&nbsp;TACTICS</span><span class="v">v0.9.1</span>
+    </a>
+    <span class="nav-spacer"></span>
+    <nav aria-label="Secciones">
+      <ul class="nav-links">
+        <li><a href="#que-es">Qué es</a></li>
+        <li><a href="#cambios">Cambios</a></li>
+        <li><a href="#pilares">Pilares</a></li>
+        <li><a href="#mazo">Mazo</a></li>
+        <li><a href="#turno">Turno</a></li>
+        <li><a href="#documentos">Documentos</a></li>
+        <li><a href="#estado">Estado</a></li>
+      </ul>
+    </nav>
+    <a class="nav-gh" href="https://github.com/ShyanJMC/digimon-tamer_tactics" target="_blank" rel="noopener">GitHub&nbsp;↗</a>
+    <button class="nav-toggle" aria-label="Menú" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="container">
+    <span class="kicker">Formato fan-made · Digimon Card Game 2020+</span>
+    <h1>TAMER TACTICS</h1>
+    <p class="lede">Cada Tamer lidera un grupo. Un ataque a la seguridad por grupo. La única defensa pasiva real es <strong>evolucionar</strong>.</p>
+    <p class="sub">Un formato casero que corta los mazos de enjambre <em>sin prohibir una sola carta</em>.</p>
+    <div class="chips">
+      <span class="chip hot">v0.9.1</span>
+      <span class="chip">Congelada para mesa real</span>
+      <span class="chip">Sobre el Comprehensive Rules v4.2</span>
+      <span class="chip">0 prohibiciones propias</span>
+    </div>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/TAMER_TACTICS.md" data-doc="TAMER_TACTICS.md" data-title="Reglas del formato — v0.9.1">Leer las reglas</a>
+      <a class="btn btn-ghost" href="#que-es">Cómo funciona</a>
+    </div>
+  </div>
+</section>
+
+<section id="que-es">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker">El problema</span>
+      <h2>¿Por qué existe?</h2>
+      <span class="bar"></span>
+    </div>
+    <p class="lead">En el Digimon Card Game base, la pila de seguridad son <strong>solo 5 cartas</strong> y el límite de "1 ataque a seguridad" es <strong>por Digimon</strong>. Un mazo de enjambre —muchos cuerpos baratos, cero desarrollo, cero evolución— puede cerrar la partida en el turno 3-4. Repetitivo y poco interesante.</p>
+    <p class="lead" style="margin-top:1rem">Tamer Tactics ataca ese problema de raíz, <strong>sin banear nada</strong>:</p>
+
+    <div class="tbl-wrap" style="margin-top:1.6rem">
+      <table class="data">
+        <thead><tr><th></th><th>Juego base</th><th>Tamer Tactics</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Límite de ataque a seguridad</strong></td><td class="base">1 por Digimon</td><td class="tt">1 por grupo liderado por un Tamer</td></tr>
+          <tr><td><strong>Conseguir otro "carril" de ataque</strong></td><td class="base">gratis: jugás otro Digimon</td><td class="tt">lento y caro: cada Tamer nuevo cuesta tiempo y memoria</td></tr>
+          <tr><td><strong>Defensa pasiva</strong></td><td class="base">quedarte quieto (tu Digimon sin suspender no es blanco)</td><td class="tt">ninguna — todo el board es blanco; la única defensa es más DP</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="evo-strip"><b>🥚 In-Training</b><span>→</span><b>🦎 Rookie</b><span>→</span><b>🦖 Champion</b><span>→</span><b>🐲 Ultimate</b><span>→</span><b>⚡ Mega</b></p>
+  </div>
+</section>
+
+<section id="idea">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker">En 30 segundos</span>
+      <h2>La idea de un vistazo</h2>
+      <span class="bar"></span>
+    </div>
+    <div class="idea-grid">
+      <ul class="spark">
+        <li>Los <strong>Tamers salen del mazo principal</strong> y van a una pila nueva junto con los Digi-Egg.</li>
+        <li>Al empezar la partida <strong>ya tenés 1 Tamer en el área de batalla</strong>, y su <code>[On Play]</code> se resuelve.</li>
+        <li>Cada Digimon que jugás <strong>se une a un Tamer</strong> → forma parte de su <strong>grupo</strong>.</li>
+        <li>Cada grupo hace <strong>1 ataque a la seguridad rival por turno</strong>. Más grupos = más ataques… pero el 2.º Tamer cuesta <strong>2 de memoria</strong> y el 3.º cuesta varios turnos.</li>
+        <li>Podés atacar <strong>cualquier Digimon o Tamer rival</strong> en todo momento — pero <strong>máximo 3 (+1) por turno</strong>.</li>
+        <li>Cada turno podés blindar <strong>1 carta propia</strong>: intocable durante un turno completo.</li>
+      </ul>
+      <figure class="diagram">
+        <img src="assets/board.svg" alt="Diagrama del sistema de grupos: cada Tamer propio lidera un grupo de Digimon y cada grupo hace un único ataque a la seguridad rival por turno.">
+        <figcaption>El sistema de grupos: más Tamers, más carriles de ataque — a un costo real.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="cambios">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker">Diferencias</span>
+      <h2>Qué cambia respecto al juego base</h2>
+      <span class="bar"></span>
+    </div>
+    <p class="lead">Tamer Tactics se apoya <strong>sobre</strong> el Comprehensive Rules Manual v4.2. Todo lo que no está en esta lista funciona <strong>exactamente igual</strong> que en el juego oficial.</p>
+    <div class="tbl-wrap" style="margin-top:1.6rem">
+      <table class="data">
+        <thead><tr><th>Área</th><th>Cambio</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Mazo</strong></td><td>Mazo principal de 50 = solo Digimon + Option. Nueva <strong>pila Tamer + Digi-Egg</strong> (4-7 Tamers + 2-5 Digi-Egg, total 6-12). Los <strong>Tamers, todos distintos</strong> — sin copias repetidas.</td></tr>
+          <tr><td><strong>Arranque</strong></td><td>Cada jugador coloca 1 Tamer directo en el área de batalla en la preparación; su <code>[On Play]</code> se resuelve ahí. Sin "turno muerto".</td></tr>
+          <tr><td><strong>Tamers</strong></td><td>Entran por eclosión, no se juegan de la mano. El 2.º Tamer en adelante cuesta <strong>2 de memoria</strong> para moverlo a batalla. Un Tamer nunca digivoluciona a Digimon. <strong>Siempre hay ≥1 Tamer tuyo en batalla</strong> (el último es inmune a la remoción rival).</td></tr>
+          <tr><td><strong>Grupos</strong></td><td>Cada Digimon que entra al área de batalla se une a un Tamer propio. Los efectos de <em>"tus Digimon"</em> solo alcanzan al <strong>mismo grupo</strong>. Digivolución y DNA: <strong>materiales del mismo grupo</strong>.</td></tr>
+          <tr><td><strong>Ataque a seguridad</strong></td><td>1 <strong>por grupo</strong>, por turno (antes: 1 por Digimon).</td></tr>
+          <tr><td><strong>Ataque a Digimon / Tamer</strong></td><td>Cualquier Digimon rival es blanco, suspendido o no. Un Tamer solo si una carta lo habilita. Techo <strong>absoluto de 3 (+1 de keyword) por turno</strong>.</td></tr>
+          <tr><td><strong>Protección</strong></td><td>1 carta propia por turno (jugada / evolución / link / re-agrupada) queda <strong>intocable</strong> hasta tu próximo turno. Máx. 2 veces por línea evolutiva.</td></tr>
+          <tr><td><strong>Legalidad</strong></td><td>Se usa la lista <strong>oficial de Bandai</strong> (Banned / Restricted / Banned Pairs). El formato <strong>no agrega prohibiciones propias</strong>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="pilares">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker">Núcleo</span>
+      <h2>Los 6 pilares</h2>
+      <span class="bar"></span>
+    </div>
+    <div class="pillars">
+      <article class="pillar"><span class="pillar-num" data-accent="orange">1</span><h3>Gating de Tamer</h3><p>No jugás ningún Digimon del mazo principal hasta tener 1 Tamer en batalla. Siempre hay al menos uno: piso duro.</p></article>
+      <article class="pillar"><span class="pillar-num" data-accent="orange">2</span><h3>Grupos</h3><p>Cada Digimon que entra se une a un Tamer propio. Ese Tamer y sus Digimon son un grupo: un board independiente.</p></article>
+      <article class="pillar"><span class="pillar-num" data-accent="orange">3</span><h3>Efectos = tu grupo</h3><p>"Tus Digimon" solo alcanza a los del mismo grupo que la fuente. Digivolución y DNA: materiales del mismo grupo.</p></article>
+      <article class="pillar"><span class="pillar-num" data-accent="cyan">4</span><h3>Seguridad por grupo</h3><p>1 ataque a la pila de seguridad por grupo, por turno — no por Digimon. Ahí muere el enjambre de un solo grupo.</p></article>
+      <article class="pillar"><span class="pillar-num" data-accent="cyan">5</span><h3>Todo el board es blanco</h3><p>Podés atacar cualquier Digimon rival, esté suspendido o no. Techo: 3 (+1) ataques a Digimon/Tamer por turno.</p></article>
+      <article class="pillar"><span class="pillar-num" data-accent="green">6</span><h3>Protección 1/turno</h3><p>Blindás 1 carta propia por turno (jugada / evolución / link / re-agrupada). Intocable un turno. Máx. 2 veces por línea.</p></article>
+    </div>
+    <div class="note"><strong>Cada regla del formato</strong> es rastreable a una simulación concreta que la motivó — ver el <a href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/TAMER_TACTICS-simulations.md" data-doc="TAMER_TACTICS-simulations.md" data-title="Playtesting y diseño">historial de playtesting</a>.</div>
+  </div>
+</section>
+
+<section id="mazo">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker">Deckbuilding</span>
+      <h2>Construcción de mazo</h2>
+      <span class="bar"></span>
+    </div>
+    <figure class="diagram" style="margin-bottom:1.8rem">
+      <img src="assets/deck-zones.svg" alt="Mazo principal de 50 cartas (solo Digimon y Option) y pila Tamer + Digi-Egg de 6 a 12 cartas con un Tamer garantizado que arranca en el área de batalla.">
+    </figure>
+    <div class="tbl-wrap">
+      <table class="data">
+        <thead><tr><th>Zona</th><th>Regla</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Mazo principal</strong></td><td>50 cartas exactas. <strong>Solo Digimon y Option</strong> — los Tamers no van acá. Máx. 4 copias por número de carta.</td></tr>
+          <tr><td><strong>Pila Tamer + Digi-Egg</strong></td><td><strong>4-7 Tamers</strong> + <strong>2-5 Digi-Egg</strong>, mezclados. Total 6-12. Cada Tamer, un número de carta <strong>distinto</strong> (sin repetir); los Digi-Egg, hasta 4 copias.</td></tr>
+          <tr><td><strong>Preparación</strong></td><td>Piedra-papel-tijera → barajar todo → cada quien busca 1 Tamer y lo pone en su área de batalla → resolver su <code>[On Play]</code> → robar 5 + mulligan → seguridad → memoria a 0 → turno 1.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">Como los <code>[On Play]</code> de los Tamers <strong>sí</strong> funcionan (al entrar a batalla), evaluá cada Tamer por su cuerpo/DP, sus pasivas <strong>y</strong> su <code>[On Play]</code>. Y como no se puede repetir Tamer, elegí 4-7 que se complementen.</div>
+  </div>
+</section>
+
+<section id="turno">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker">Ritmo</span>
+      <h2>El turno, paso a paso</h2>
+      <span class="bar"></span>
+    </div>
+    <div class="media-2">
+      <figure class="diagram">
+        <img src="assets/turn-flow.svg" alt="Fases del turno: setup con el Tamer inicial, unsuspend, draw, breeding y main phase; solo breeding y main cambian respecto al juego oficial.">
+      </figure>
+      <figure class="diagram">
+        <img src="assets/memory-gauge.svg" alt="El Memory Gauge, recurso compartido de -10 a +10; gastar de más cruza el marcador al lado del rival y termina el turno.">
+      </figure>
+    </div>
+    <p class="lead" style="margin-top:1.6rem">Solo <strong>dos fases</strong> cambian: <strong>Breeding</strong> (mover el 2.º+ Tamer a batalla cuesta 2 de memoria) y <strong>Main</strong> (1 ataque a seguridad por grupo, 3 (+1) a Digimon/Tamer, y 1 carta protegida). El resto —memory gauge, counter timing, chequeos de seguridad, batallas por DP— es idéntico al reglamento oficial.</p>
+  </div>
+</section>
+
+<section id="documentos">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker">La letra chica</span>
+      <h2>Documentos</h2>
+      <span class="bar"></span>
+    </div>
+    <p class="lead">Se leen acá mismo (o se abren en GitHub). El repo es la fuente de verdad.</p>
+    <div class="docs" style="margin-top:1.8rem">
+      <a class="doc-card" data-accent="orange" data-doc="TAMER_TACTICS.md" data-title="Reglas del formato — v0.9.1" href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/TAMER_TACTICS.md">
+        <span class="dtag">v0.9.1 · vigente</span><h3>Reglas del formato</h3>
+        <p>El reglamento completo de Tamer Tactics. Empezá acá si querés jugar.</p><span class="go">Leer →</span>
+      </a>
+      <a class="doc-card" data-accent="cyan" data-doc="TAMER_TACTICS-simulations.md" data-title="Playtesting y diseño" href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/TAMER_TACTICS-simulations.md">
+        <span class="dtag">6 rondas · 42 sims · +2 parches</span><h3>Playtesting y diseño</h3>
+        <p>Qué se probó, qué falló y por qué existe cada regla.</p><span class="go">Leer →</span>
+      </a>
+      <a class="doc-card" data-accent="green" data-doc="OPEN_ITEMS.md" data-title="Qué falta validar" href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/OPEN_ITEMS.md">
+        <span class="dtag">para mesa real</span><h3>Qué falta validar</h3>
+        <p>Los números y riesgos sujetos a datos de partidas con jugadores.</p><span class="go">Leer →</span>
+      </a>
+      <a class="doc-card" data-accent="orange" data-doc="README.md" data-title="Presentación general" href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/README.md">
+        <span class="dtag">overview</span><h3>Presentación</h3>
+        <p>La versión corta, con todos los gráficos del formato.</p><span class="go">Leer →</span>
+      </a>
+      <a class="doc-card" data-accent="muted" data-doc="2020-edition/RULES.md" data-title="Reglas del juego base" href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/2020-edition/RULES.md">
+        <span class="dtag">Comprehensive Rules v4.2</span><h3>Reglas del juego base</h3>
+        <p>Extracto organizado del reglamento oficial de Bandai.</p><span class="go">Leer →</span>
+      </a>
+      <a class="doc-card" data-accent="muted" data-doc="2020-edition/DECKBUILDING.md" data-title="Construcción de mazo (base)" href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/2020-edition/DECKBUILDING.md">
+        <span class="dtag">oficial + estrategia</span><h3>Construcción de mazo (base)</h3>
+        <p>Reglas oficiales de deckbuilding y guía de la comunidad.</p><span class="go">Leer →</span>
+      </a>
+      <a class="doc-card" data-accent="muted" data-doc="2020-edition/SETS.md" data-title="Listado de sets" href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/2020-edition/SETS.md">
+        <span class="dtag">2020 → hoy</span><h3>Listado de sets</h3>
+        <p>Cronología completa de productos del juego.</p><span class="go">Leer →</span>
+      </a>
+      <a class="doc-card" data-accent="muted" href="https://github.com/ShyanJMC/digimon-tamer_tactics/tree/master/2020-edition/pdfs" target="_blank" rel="noopener">
+        <span class="dtag">binarios</span><h3>PDFs oficiales de Bandai</h3>
+        <p>Comprehensive Rules, Official Rule Manual, glosario, erratas, reglas de torneo.</p><span class="go">Abrir en GitHub ↗</span>
+      </a>
+    </div>
+    <p class="docs-hint">Sin JavaScript, cada tarjeta abre el documento directamente en GitHub.</p>
+  </div>
+</section>
+
+<section id="estado">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker">Estado</span>
+      <h2>Hoja de ruta</h2>
+      <span class="bar"></span>
+    </div>
+    <ol class="road">
+      <li class="done"><span class="mk">✅</span><div><b>v0.1 → v0.9</b><p>6 rondas de simulación, 42 escenarios corridos por subagentes independientes.</p></div></li>
+      <li class="done"><span class="mk">✅</span><div><b>v0.9.0</b><p>Pase de revisión de reglas: cerrados los huecos de interacción del sistema de grupos y de las vías de entrada al campo. Ruleset congelado.</p></div></li>
+      <li class="done"><span class="mk">✅</span><div><b>v0.9.1</b><p>Primer parche: los Tamers de la pila deben ser todos distintos (1 copia por Tamer).</p></div></li>
+      <li class="now"><span class="mk">⏳</span><div><b>Mesa real</b><p>30-50 partidas con jugadores humanos y decklists del meta actual. Lo que hay que medir está en <a href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/OPEN_ITEMS.md" data-doc="OPEN_ITEMS.md" data-title="Qué falta validar">OPEN_ITEMS.md</a>.</p></div></li>
+      <li class="todo"><span class="mk">⬜</span><div><b>v1.0</b><p>Recalibración con datos reales: winrate de primer jugador, curva de "grupos por turno", y los números que hoy están afirmados pero no probados en mesa.</p></div></li>
+    </ol>
+    <div class="note"><strong>⚠️ Nota honesta:</strong> todo el playtesting hasta ahora lo corrieron agentes LLM, no jugadores. Sirve para encontrar huecos de reglas; <strong>no</strong> para calibrar balance fino. v0.9.1 es un punto de partida para llevar a la mesa, no un formato "terminado".</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h4>Tamer Tactics</h4>
+        <p style="color:var(--muted);font-size:.9rem;max-width:40ch">Formato casero para el Digimon Card Game 2020+. Cortá el enjambre, premiá la evolución, no prohíbas nada.</p>
+      </div>
+      <div>
+        <h4>Documentos</h4>
+        <ul>
+          <li><a href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/TAMER_TACTICS.md" data-doc="TAMER_TACTICS.md" data-title="Reglas del formato — v0.9.1">Reglas del formato</a></li>
+          <li><a href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/TAMER_TACTICS-simulations.md" data-doc="TAMER_TACTICS-simulations.md" data-title="Playtesting y diseño">Playtesting y diseño</a></li>
+          <li><a href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/OPEN_ITEMS.md" data-doc="OPEN_ITEMS.md" data-title="Qué falta validar">Qué falta validar</a></li>
+          <li><a href="https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/2020-edition/RULES.md" data-doc="2020-edition/RULES.md" data-title="Reglas del juego base">Reglas del juego base</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Repositorio</h4>
+        <ul>
+          <li><a href="https://github.com/ShyanJMC/digimon-tamer_tactics" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://github.com/ShyanJMC/digimon-tamer_tactics/tree/master/2020-edition/pdfs" target="_blank" rel="noopener">PDFs oficiales ↗</a></li>
+          <li><a href="https://github.com/ShyanJMC/digimon-tamer_tactics/issues" target="_blank" rel="noopener">Reportar algo ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">
+      Proyecto de fans, <strong>sin relación, afiliación ni respaldo de Bandai</strong>.
+      «Digimon», «Digimon Card Game», los nombres de cartas, las keywords y las reglas oficiales citadas son <strong>© Bandai / Toei Animation</strong>.
+      Este sitio y el repositorio <strong>no incluyen arte ni cartas de Bandai</strong>: todos los gráficos son originales, hechos para el proyecto.
+      Los PDFs enlazados son documentos de reglas que Bandai publica gratuitamente, referenciados sin modificar.
+      El texto de reglas del formato es de libre uso y modificación.
+    </p>
+    <p class="foot-sig">TAMER TACTICS · v0.9.1 · hecho por y para jugadores</p>
+  </div>
+</footer>
+
+<div class="reader" id="reader" hidden role="dialog" aria-modal="true" aria-labelledby="reader-title">
+  <div class="reader-panel">
+    <header class="reader-head">
+      <h2 id="reader-title">Documento</h2>
+      <div class="reader-actions">
+        <a class="btn btn-ghost" id="reader-gh" href="#" target="_blank" rel="noopener">GitHub ↗</a>
+        <button class="reader-close" id="reader-close" aria-label="Cerrar lector">✕</button>
+      </div>
+    </header>
+    <div class="reader-body" id="reader-body"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js" defer></script>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  var GH = 'https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/';
+  var reader   = document.getElementById('reader');
+  var bodyEl   = document.getElementById('reader-body');
+  var titleEl  = document.getElementById('reader-title');
+  var ghLink   = document.getElementById('reader-gh');
+  var closeBtn = document.getElementById('reader-close');
+  var lastFocus = null;
+
+  function ghUrl(file){ return GH + file.split('/').map(encodeURIComponent).join('/'); }
+  function mdReady(){ return typeof window.marked !== 'undefined'; }
+
+  function openDoc(file, title){
+    if(!mdReady()){ window.open(ghUrl(file), '_blank', 'noopener'); return; }
+    lastFocus = document.activeElement;
+    titleEl.textContent = title || file;
+    ghLink.href = ghUrl(file);
+    bodyEl.innerHTML = '<p class="reader-status">Cargando ' + file + ' …</p>';
+    reader.hidden = false;
+    document.documentElement.classList.add('no-scroll');
+    closeBtn.focus();
+    try { history.replaceState(null, '', '#leer=' + encodeURIComponent(file)); } catch(e){}
+
+    fetch(file, {cache:'no-cache'})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function(md){
+        var html = window.marked.parse(md);
+        if(typeof window.DOMPurify !== 'undefined'){
+          html = window.DOMPurify.sanitize(html, {ADD_ATTR:['align','target','rel']});
+        }
+        bodyEl.innerHTML = '<article class="md">' + html + '</article>';
+        bodyEl.scrollTop = 0;
+        bodyEl.querySelectorAll('a[href]').forEach(function(a){
+          var href = a.getAttribute('href') || '';
+          if(/^https?:/i.test(href)){ a.target = '_blank'; a.rel = 'noopener'; }
+          else if(/\.md($|[#?])/i.test(href)){
+            a.addEventListener('click', function(e){
+              e.preventDefault();
+              var f = href.replace(/^\.?\//, '').split('#')[0];
+              openDoc(f, f);
+            });
+          }
+        });
+      })
+      .catch(function(){
+        bodyEl.innerHTML = '<p class="reader-status">No se pudo cargar el documento acá. ' +
+          '<a href="' + ghUrl(file) + '" target="_blank" rel="noopener">Abrilo en GitHub ↗</a></p>';
+      });
+  }
+
+  function closeDoc(){
+    reader.hidden = true;
+    document.documentElement.classList.remove('no-scroll');
+    bodyEl.innerHTML = '';
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+    try {
+      if(location.hash.indexOf('#leer=') === 0){
+        history.replaceState(null, '', location.pathname + location.search);
+      }
+    } catch(e){}
+  }
+
+  document.querySelectorAll('[data-doc]').forEach(function(el){
+    el.addEventListener('click', function(e){
+      if(e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+      e.preventDefault();
+      openDoc(el.getAttribute('data-doc'), el.getAttribute('data-title') || el.textContent.trim());
+    });
+  });
+
+  closeBtn.addEventListener('click', closeDoc);
+  reader.addEventListener('click', function(e){ if(e.target === reader) closeDoc(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !reader.hidden) closeDoc(); });
+
+  try {
+    var m = /^#leer=(.+)$/.exec(location.hash);
+    if(m){
+      var waitFor = setInterval(function(){
+        if(mdReady()){ clearInterval(waitFor); openDoc(decodeURIComponent(m[1]), decodeURIComponent(m[1])); }
+      }, 60);
+      setTimeout(function(){ clearInterval(waitFor); }, 4000);
+    }
+  } catch(e){}
+
+  /* mobile nav */
+  var navToggle = document.querySelector('.nav-toggle');
+  var nav = document.querySelector('.nav');
+  if(navToggle && nav){
+    navToggle.addEventListener('click', function(){
+      var isOpen = nav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    nav.querySelectorAll('.nav-links a').forEach(function(a){
+      a.addEventListener('click', function(){
+        nav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* active section in nav */
+  var linkList = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+  var sectionMap = {};
+  linkList.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    var s = document.getElementById(id);
+    if(s) sectionMap[id] = a;
+  });
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        var a = sectionMap[en.target.id];
+        if(!a) return;
+        linkList.forEach(function(x){ x.classList.remove('current'); });
+        a.classList.add('current');
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(sectionMap).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+});
+</script>
+</body>
+</html>
