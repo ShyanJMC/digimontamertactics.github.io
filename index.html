@@ -6,7 +6,7 @@
 <title>Tamer Tactics — formato fan-made para el Digimon Card Game</title>
 <meta name="description" content="Formato casero para el Digimon Card Game 2020+: cada Tamer lidera un grupo, un ataque a la seguridad por grupo, y la única defensa pasiva real es evolucionar. Sin prohibir una sola carta.">
 <meta name="theme-color" content="#0A1226">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2l12 7v14l-12 7L4 23V9z' fill='%23F2551D'/%3E%3Cpath d='M17 8l-7 10h5l-1 6 7-10h-5z' fill='%23FFC845'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cpath%20d='M16%202l12%207v14l-12%207L4%2023V9z'%20fill='%23F2551D'/%3E%3Cpath%20d='M17%208l-7%2010h5l-1%206%207-10h-5z'%20fill='%23FFC845'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Tamer Tactics — formato fan-made para el Digimon Card Game">
 <meta property="og:description" content="Cada Tamer lidera un grupo. Un ataque a la seguridad por grupo. Evolucionar es la única defensa real. Sin banear nada.">
@@ -17,13 +17,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
+  color-scheme:dark;
   --bg:#0A1226; --bg-2:#0E1A33; --panel:#13233F; --panel-2:#182F52;
   --line:#27406B; --line-soft:#1E3357;
   --ink:#EAF1FF; --muted:#93A7CC; --dim:#6E85AC;
   --orange:#FF8A3D; --orange-deep:#F2551D; --red:#E5384E;
   --cyan:#37C6DE; --green:#5FD85B; --yellow:#FFC845; --purple:#9B6BFF;
   --accent-grad:linear-gradient(135deg,#FFB24D 0%,#F2551D 55%,#E5384E 100%);
-  --hex:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='48' viewBox='0 0 56 48'%3E%3Cpath d='M14 0H42L56 24 42 48H14L0 24Z' fill='none' stroke='%2327406B' stroke-width='1'/%3E%3C/svg%3E");
+  --hex:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='56'%20height='48'%20viewBox='0%200%2056%2048'%3E%3Cpath%20d='M14%200H42L56%2024%2042%2048H14L0%2024Z'%20fill='none'%20stroke='%2327406B'%20stroke-width='1'/%3E%3C/svg%3E");
   --maxw:1120px;
   --nav-h:66px;
 }
@@ -269,6 +270,9 @@ footer a:hover{color:var(--cyan)}
 .md img{border:1px solid var(--line);margin:1rem 0;background:var(--bg-2)}
 .md details{border:1px solid var(--line-soft);background:#0A1226;padding:.6rem 1rem;margin:.6rem 0;border-radius:4px}
 .md summary{cursor:pointer;font-weight:600;color:var(--ink)}
+.md-raw{white-space:pre-wrap;word-break:break-word;font-size:.82rem;line-height:1.55;color:#CFE3FF;background:#0A1226;border:1px solid var(--line-soft);padding:1rem;overflow-x:auto;margin:0}
+.reader-status code{background:#0A1226;border:1px solid var(--line-soft);padding:.1rem .35rem;border-radius:3px;color:var(--yellow)}
+.reader-status a{color:var(--cyan)}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:900px){
@@ -593,8 +597,8 @@ footer a:hover{color:var(--cyan)}
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js" defer></script>
 <script>
 window.addEventListener('DOMContentLoaded', function(){
   var GH = 'https://github.com/ShyanJMC/digimon-tamer_tactics/blob/master/';
@@ -606,42 +610,57 @@ window.addEventListener('DOMContentLoaded', function(){
   var lastFocus = null;
 
   function ghUrl(file){ return GH + file.split('/').map(encodeURIComponent).join('/'); }
-  function mdReady(){ return typeof window.marked !== 'undefined'; }
+  function escHtml(s){ return s.replace(/[&<>]/g, function(c){ return c === '&' ? '&amp;' : c === '<' ? '&lt;' : '&gt;'; }); }
+
+  function wireLinks(){
+    bodyEl.querySelectorAll('a[href]').forEach(function(a){
+      var href = a.getAttribute('href') || '';
+      if(/^https?:/i.test(href)){ a.target = '_blank'; a.rel = 'noopener'; }
+      else if(/\.md($|[#?])/i.test(href)){
+        a.addEventListener('click', function(e){
+          e.preventDefault();
+          var f = href.replace(/^\.?\//, '').split('#')[0];
+          openDoc(f, f);
+        });
+      }
+    });
+  }
+
+  function renderInto(md, file){
+    if(typeof window.marked !== 'undefined'){
+      var html;
+      try { html = window.marked.parse(md); }
+      catch(e){ html = '<pre class="md-raw">' + escHtml(md) + '</pre>'; }
+      if(typeof window.DOMPurify !== 'undefined'){
+        html = window.DOMPurify.sanitize(html, {ADD_ATTR:['align','target','rel']});
+      }
+      bodyEl.innerHTML = '<article class="md">' + html + '</article>';
+    } else {
+      bodyEl.innerHTML =
+        '<p class="reader-status">Vista sin formato (no se pudo cargar el renderizador de Markdown). ' +
+        '<a href="' + ghUrl(file) + '" target="_blank" rel="noopener">Verlo con formato en GitHub ↗</a></p>' +
+        '<pre class="md-raw">' + escHtml(md) + '</pre>';
+    }
+    bodyEl.scrollTop = 0;
+    wireLinks();
+  }
 
   function openDoc(file, title){
-    if(!mdReady()){ window.open(ghUrl(file), '_blank', 'noopener'); return; }
     lastFocus = document.activeElement;
     titleEl.textContent = title || file;
     ghLink.href = ghUrl(file);
-    bodyEl.innerHTML = '<p class="reader-status">Cargando ' + file + ' …</p>';
+    bodyEl.innerHTML = '<p class="reader-status">Cargando <code>' + file + '</code> …</p>';
     reader.hidden = false;
     document.documentElement.classList.add('no-scroll');
     closeBtn.focus();
     try { history.replaceState(null, '', '#leer=' + encodeURIComponent(file)); } catch(e){}
 
     fetch(file, {cache:'no-cache'})
-      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
-      .then(function(md){
-        var html = window.marked.parse(md);
-        if(typeof window.DOMPurify !== 'undefined'){
-          html = window.DOMPurify.sanitize(html, {ADD_ATTR:['align','target','rel']});
-        }
-        bodyEl.innerHTML = '<article class="md">' + html + '</article>';
-        bodyEl.scrollTop = 0;
-        bodyEl.querySelectorAll('a[href]').forEach(function(a){
-          var href = a.getAttribute('href') || '';
-          if(/^https?:/i.test(href)){ a.target = '_blank'; a.rel = 'noopener'; }
-          else if(/\.md($|[#?])/i.test(href)){
-            a.addEventListener('click', function(e){
-              e.preventDefault();
-              var f = href.replace(/^\.?\//, '').split('#')[0];
-              openDoc(f, f);
-            });
-          }
-        });
-      })
-      .catch(function(){
-        bodyEl.innerHTML = '<p class="reader-status">No se pudo cargar el documento acá. ' +
+      .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+      .then(function(md){ renderInto(md, file); })
+      .catch(function(err){
+        bodyEl.innerHTML =
+          '<p class="reader-status">No se pudo cargar <code>' + file + '</code> (' + (err && err.message || 'error') + ').<br>' +
           '<a href="' + ghUrl(file) + '" target="_blank" rel="noopener">Abrilo en GitHub ↗</a></p>';
       });
   }
@@ -672,12 +691,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
   try {
     var m = /^#leer=(.+)$/.exec(location.hash);
-    if(m){
-      var waitFor = setInterval(function(){
-        if(mdReady()){ clearInterval(waitFor); openDoc(decodeURIComponent(m[1]), decodeURIComponent(m[1])); }
-      }, 60);
-      setTimeout(function(){ clearInterval(waitFor); }, 4000);
-    }
+    if(m){ var f = decodeURIComponent(m[1]); openDoc(f, f); }
   } catch(e){}
 
   /* mobile nav */
