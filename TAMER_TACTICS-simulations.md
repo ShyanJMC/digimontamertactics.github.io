@@ -4,7 +4,7 @@ Este documento es el complemento de `TAMER_TACTICS.md` (que contiene solo las re
 
 Metodología: cada ronda se corrió como un conjunto de **simulaciones en paralelo vía subagentes independientes**, cada uno con una consigna puntual (armar mazos, jugar turnos, medir algo específico) sobre el estado del reglamento en ese momento. Los resultados se consolidaban, y las decisiones de qué aplicar las tomó el usuario en cada caso — este documento las registra en orden cronológico.
 
-Van **6 rondas completas**, 42 simulaciones en total, llevando el formato de v0.1 a v0.9, más un **pase de revisión de reglas** (§7) hecho por el usuario que lo cerró en v0.9.0 y lo congeló para mesa real.
+Van **6 rondas completas**, 42 simulaciones en total, llevando el formato de v0.1 a v0.9, más un **pase de revisión de reglas** (§7) que lo cerró en v0.9.0, y un **primer parche** (§8) que lo llevó a v0.9.1. Congelado para mesa real.
 
 ---
 
@@ -20,6 +20,7 @@ Van **6 rondas completas**, 42 simulaciones en total, llevando el formato de v0.
 - **v0.8** (ronda 5, §5 abajo): la protección cubre ser elegida **ni afectada** (incluye remoción "todos los que cumplan X"). Timing de digivolución fijado a después del `[When Digivolving]`. Ventana de gracia para olvidos.
 - **v0.9** (ronda 6, §6 abajo): Link agregado como 4ta categoría elegible para la protección. "Efecto de remoción" aclarado en sentido amplio. Cierre explícito de la ventana de gracia ante cualquier otra acción.
 - **v0.9.0** (pase de revisión de reglas, §7 abajo): cierre de huecos de interacción que las simulaciones nunca tocaron — entrada a grupo unificada (jugar y mover desde cría), `<Blocker>` global (no de grupo), invariante de Tamer (el último Tamer es inmune a remoción rival), materiales de digivolución/DNA intra-grupo, `[On Play]` de Tamers **reactivado**, un ataque cuenta aunque falle, ataques a Tamers solo vía efecto y dentro del cupo de 3(+1), carta protegida intocable absoluta, nuevo orden de preparación, banlist oficial de Bandai. **Ruleset congelado para llevar a mesa real** (ver `OPEN_ITEMS.md`).
+- **v0.9.1** (primer parche, §8 abajo): los Tamers de la pila Tamer+Digi-Egg deben ser **todos distintos** (1 copia por Tamer). Cierra el riesgo de "apilar copias del mismo Tamer de ramp pasivo" y garantiza que cada grupo de una partida esté liderado por un Tamer mecánicamente distinto.
 
 ---
 
@@ -219,3 +220,20 @@ Consistente con partidas de referencia anteriores (11 turnos). Notó que ni la v
 13. **Legalidad:** lista oficial de Bandai (Banned/Restricted/Banned Pairs) para torneos sancionados. Sin banlist propia del formato.
 
 A partir de acá el ruleset queda **congelado en v0.9.0**. La próxima iteración se hace con datos de partidas reales, no de simulación — la lista de qué medir está en `OPEN_ITEMS.md`.
+
+---
+
+## 8. Parche v0.9.1 — Tamers únicos en la pila
+
+**No es una ronda de playtesting.** Parche puntual sobre v0.9.0, a pedido del usuario.
+
+**Cambio:** en la pila Tamer+Digi-Egg, cada Tamer debe ser un número de carta distinto — **1 sola copia por Tamer, sin repetir**. Los 4-7 Tamers son todos diferentes. Los Digi-Egg no cambian (siguen admitiendo hasta 4 copias por número).
+
+**Por qué:**
+
+- **Elimina el motor degenerado** de "apilar 3-4 copias del mismo Tamer de ramp pasivo", que había quedado como riesgo a vigilar en `OPEN_ITEMS.md` §3. Ahora ese riesgo se reduce a "3 Tamers de ramp *distintos*", mucho más difícil de armar y menos explosivo.
+- **Cada grupo de una partida está liderado por un Tamer mecánicamente distinto** → más variedad de estados de board, menos "partida espejo" dentro del propio mazo.
+- **Sube el peso de la decisión de armado:** con 4-7 Tamers obligatoriamente distintos, elegir *cuáles* y prever *cuál sale primero* en el setup (§2.0) es una elección real, no un default.
+- **Costo bajo:** los mazos competitivos rara vez querían 3x el mismo Tamer; el caso que sí lo hacía era justamente el que convenía cortar.
+
+**Queda por confirmar en mesa:** si el piso de **4 Tamers distintos** es cómodo de armar en mazos mono-color con un pool de Tamers chico (ver `OPEN_ITEMS.md`).

@@ -4,7 +4,7 @@
 
 <br>
 
-[![Version](https://img.shields.io/badge/version-0.9.0-F26B1D?style=for-the-badge)](TAMER_TACTICS.md)
+[![Version](https://img.shields.io/badge/version-0.9.1-F26B1D?style=for-the-badge)](TAMER_TACTICS.md)
 [![Estado](https://img.shields.io/badge/estado-congelada_%C2%B7_rumbo_a_mesa_real-3FC8DE?style=for-the-badge)](OPEN_ITEMS.md)
 [![Base](https://img.shields.io/badge/base-DCG_2020%2B-1E3357?style=for-the-badge)](2020-edition/RULES.md)
 [![Comprehensive Rules](https://img.shields.io/badge/Comprehensive_Rules-v4.2-1E3357?style=for-the-badge)](2020-edition/pdfs/)
@@ -77,7 +77,7 @@ Tamer Tactics se apoya **sobre** el Comprehensive Rules Manual v4.2. Todo lo que
 
 | Área | Cambio |
 |---|---|
-| **Mazo** | Mazo principal de 50 = solo Digimon + Option. Nueva **pila Tamer + Digi-Egg** (4-7 Tamers + 2-5 Digi-Egg, total 6-12). |
+| **Mazo** | Mazo principal de 50 = solo Digimon + Option. Nueva **pila Tamer + Digi-Egg** (4-7 Tamers + 2-5 Digi-Egg, total 6-12). Los **Tamers, todos distintos** — sin copias repetidas. |
 | **Arranque** | Cada jugador coloca 1 Tamer directo en el área de batalla en la preparación; su `[On Play]` se resuelve ahí. Sin "turno muerto". |
 | **Tamers** | Entran por eclosión, no se juegan de la mano. El 2.º Tamer en adelante cuesta **2 de memoria** para moverlo a batalla. Un Tamer nunca puede digivolucionar a Digimon. **Siempre hay ≥1 Tamer tuyo en batalla** (el último es inmune a la remoción rival). |
 | **Grupos** | Cada Digimon que entra al área de batalla se une a un Tamer propio. Los efectos de *"tus Digimon"* solo alcanzan al **mismo grupo**. Digivolución y DNA: **materiales del mismo grupo**. |
@@ -103,10 +103,10 @@ Tamer Tactics se apoya **sobre** el Comprehensive Rules Manual v4.2. Todo lo que
 | Zona | Regla |
 |---|---|
 | **Mazo principal** | 50 cartas exactas. **Solo Digimon y Option** — los Tamers no van acá. Máx. 4 copias por número de carta. |
-| **Pila Tamer + Digi-Egg** | **4-7 Tamers** + **2-5 Digi-Egg**, mezclados. Total 6-12. Reemplaza al Digi-Egg deck normal. |
+| **Pila Tamer + Digi-Egg** | **4-7 Tamers** + **2-5 Digi-Egg**, mezclados. Total 6-12. Reemplaza al Digi-Egg deck normal. **Cada Tamer, un número de carta distinto** (sin repetir); los Digi-Egg, hasta 4 copias. |
 | **Preparación** | Piedra-papel-tijera → barajar todo → cada quien busca 1 Tamer y lo pone en su área de batalla → resolver su `[On Play]` → robar 5 + mulligan → seguridad → memoria a 0 → turno 1. |
 
-**Consejo de armado:** como los `[On Play]` de los Tamers **sí** funcionan (al entrar a batalla), evaluá cada Tamer por su cuerpo/DP, sus pasivas **y** su `[On Play]`. Todo cuenta.
+**Consejo de armado:** como los `[On Play]` de los Tamers **sí** funcionan (al entrar a batalla), evaluá cada Tamer por su cuerpo/DP, sus pasivas **y** su `[On Play]`. Todo cuenta. Y como **no se puede repetir Tamer**, elegí 4-7 que se complementen — no 4 copias del mismo.
 
 Detalle completo, requisitos de color y checklist de torneo: [`2020-edition/DECKBUILDING.md`](2020-edition/DECKBUILDING.md).
 
@@ -179,6 +179,12 @@ No. Entre **todas** esas keywords juntas suman **como máximo +1 ataque** por tu
 </details>
 
 <details>
+<summary><b>¿Puedo meter varias copias del mismo Tamer en la pila?</b></summary>
+
+No. Desde v0.9.1 los Tamers de la pila Tamer+Digi-Egg deben ser **todos distintos** — 1 copia por Tamer. Así cada grupo de la partida queda liderado por un Tamer mecánicamente diferente y no se puede armar un motor apilando el mismo Tamer de ramp. Los Digi-Egg sí admiten hasta 4 copias.
+</details>
+
+<details>
 <summary><b>¿Qué lista de cartas prohibidas se usa?</b></summary>
 
 La oficial de Bandai para torneos sancionados (`world.digimoncard.com/rule/restriction_card/`). El formato no prohíbe ni restringe ninguna carta por su cuenta.
@@ -192,10 +198,11 @@ La oficial de Bandai para torneos sancionados (`world.digimoncard.com/rule/restr
 |---|---|
 | ✅ | **v0.1 → v0.9** — 6 rondas de simulación, 42 escenarios corridos por subagentes independientes. |
 | ✅ | **v0.9.0** — pase de revisión de reglas: cerrados los huecos de interacción del sistema de grupos y de las vías de entrada al campo. **Ruleset congelado.** |
+| ✅ | **v0.9.1** — primer parche: los Tamers de la pila deben ser todos distintos (1 copia por Tamer). |
 | ⏳ | **Mesa real** — 30-50 partidas con jugadores humanos y decklists del meta actual. Lo que hay que medir está en [`OPEN_ITEMS.md`](OPEN_ITEMS.md). |
 | ⬜ | **v1.0** — recalibración con datos reales: winrate de primer jugador, curva de "grupos por turno", y los números que hoy están afirmados pero no probados en mesa. |
 
-> ⚠️ **Nota honesta:** todo el playtesting hasta ahora lo corrieron agentes LLM, no jugadores. Sirve para encontrar huecos de reglas; **no** para calibrar balance fino. v0.9.0 es un punto de partida para llevar a la mesa, no un formato "terminado".
+> ⚠️ **Nota honesta:** todo el playtesting hasta ahora lo corrieron agentes LLM, no jugadores. Sirve para encontrar huecos de reglas; **no** para calibrar balance fino. v0.9.1 es un punto de partida para llevar a la mesa, no un formato "terminado".
 
 ---
 
@@ -204,7 +211,7 @@ La oficial de Bandai para torneos sancionados (`world.digimoncard.com/rule/restr
 ```
 .
 ├── README.md                     ← estás acá
-├── TAMER_TACTICS.md              ← las reglas del formato (v0.9.0, vigentes)
+├── TAMER_TACTICS.md              ← las reglas del formato (v0.9.1, vigentes)
 ├── TAMER_TACTICS-simulations.md  ← historial de playtesting y el porqué de cada regla
 ├── OPEN_ITEMS.md                 ← qué falta validar en mesa real
 ├── assets/                       ← los gráficos de este README (SVG originales)
@@ -240,5 +247,5 @@ El **texto de reglas del formato** (todo el contenido original de este repo: `TA
 
 <div align="center">
 <br>
-<sub><b>Tamer Tactics</b> · v0.9.0 · hecho por y para jugadores</sub>
+<sub><b>Tamer Tactics</b> · v0.9.1 · hecho por y para jugadores</sub>
 </div>

@@ -1,10 +1,13 @@
-# Formato "Tamer Tactics" — v0.9.0
+# Formato "Tamer Tactics" — v0.9.1
 
 Reglas completas y vigentes del formato. Para el historial de versiones, las simulaciones que motivaron cada decisión y el razonamiento detrás de cada cambio, ver `TAMER_TACTICS-simulations.md`. Para lo que todavía falta validar y los números que quedaron sujetos a datos de mesa real, ver `OPEN_ITEMS.md`.
 
 Formato casero (no oficial de Bandai) construido **sobre** las reglas del Digimon Card Game 2020+ documentadas en `2020-edition/RULES.md`. Todo lo que no se modifique explícitamente acá sigue funcionando como en el reglamento oficial (`2020-edition/pdfs/Comprehensive_Rules_v4.2_*.pdf`).
 
-**Estado:** v0.9.0 es la versión **congelada** para llevar a mesa real. Ningún número (tamaño de la pila Tamer, costo de memoria, cupos de ataque, tope de protección) se retoca hasta tener partidas con jugadores reales.
+**Estado:** v0.9.1 es la versión **congelada** para llevar a mesa real. Ningún número (tamaño de la pila Tamer, costo de memoria, cupos de ataque, tope de protección) se retoca hasta tener partidas con jugadores reales; los parches sobre v0.9.0 solo cierran huecos de reglas, no recalibran.
+
+**Parches sobre v0.9.0:**
+- **v0.9.1** — los Tamers de la pila Tamer+Digi-Egg deben ser **todos distintos** (1 copia por Tamer, sin repetir).
 
 ## 0. Objetivo de diseño
 
@@ -17,7 +20,7 @@ El juego base permite ganar atacando la pila de seguridad (solo 5 cartas) con **
 | Zona | Regla |
 |---|---|
 | **Mazo principal** | 50 cartas exactas. Solo Digimon y Option (**los Tamers NO van acá** — ver zona siguiente). Límite estándar de 4 copias por número de carta. |
-| **Mazo Tamer + Digi-Egg** (nueva zona, reemplaza al Digi-Egg deck normal) | Entre **4 y 7 Tamers**, más **2 a 5 Digi-Egg**. Mezclados en un mismo mazo. Tamaño total variable (mínimo 6, máximo 12 cartas). Mismo límite de 4 copias por número de carta. |
+| **Mazo Tamer + Digi-Egg** (nueva zona, reemplaza al Digi-Egg deck normal) | Entre **4 y 7 Tamers**, más **2 a 5 Digi-Egg**. Mezclados en un mismo mazo. Tamaño total variable (mínimo 6, máximo 12 cartas). **Cada Tamer debe ser un número de carta distinto — 1 sola copia por Tamer, sin repetir** (v0.9.1). Los Digi-Egg mantienen el límite estándar de hasta 4 copias por número de carta. |
 | **Legalidad** | Se aplica la lista oficial de Bandai de **Banned / Restricted / Banned Pairs** vigente para torneos sancionados (ver `2020-edition/DECKBUILDING.md` §A.4 y `world.digimoncard.com/rule/restriction_card/`). **El formato no agrega prohibiciones propias** — ese es el punto (§0). |
 | **Preparación** | Ver §2.0. |
 
@@ -65,7 +68,7 @@ A diferencia de versiones anteriores del formato, en v0.9.0 **el `[On Play]` de 
 
 A falta de Tamers diseñados específicamente para este formato, se reusa el texto `[On Play]` impreso para ambos casos. Sus efectos persistentes, `[Your Turn]`/`[All Turns]` y de activación `[Main]` funcionan con normalidad, como siempre.
 
-> Al armar la pila Tamer+Digi-Egg, evaluá cada Tamer por su cuerpo/DP, sus pasivas **y su `[On Play]`** — todo cuenta ahora.
+> Al armar la pila Tamer+Digi-Egg, evaluá cada Tamer por su cuerpo/DP, sus pasivas **y su `[On Play]`** — todo cuenta ahora. Y como **no se puede repetir Tamer** (v0.9.1), cada lugar de la pila es una elección única: buscá 4-7 Tamers que se complementen, no 4 copias del mismo.
 
 ### 2.4 Formación de grupos
 
@@ -154,7 +157,7 @@ Ver **`OPEN_ITEMS.md`**: el gap de fondo (no hay partidas reales), los números 
 | ¿Cuántos ataques que NO van a seguridad puede hacer un jugador por turno? | 3 normales (absoluto, cuenta la declaración tenga éxito o no) + máximo 1 adicional entre todas las keywords tipo Blitz/Vortex/Execute/Engage (absoluto) = techo real de 4. Independiente del límite de seguridad por grupo. |
 | ¿Un Tamer que entra al área de batalla dispara su `[On Play]`? | **Sí** — al moverse de cría a batalla, o al colocarse en la preparación. Reactivado en v0.9.0. |
 | ¿Un Tamer puede digivolucionar a un Digimon? | No en este formato (dejaría al grupo huérfano). Las cartas Tamer con cara de digivolución a Digimon funcionan solo como Tamer. |
-| ¿Tamaño de la pila Tamer+Digi-Egg? | 4-7 Tamers + 2-5 Digi-Egg, total 6-12, máx. 4 copias por número de carta. |
+| ¿Tamaño y composición de la pila Tamer+Digi-Egg? | 4-7 Tamers + 2-5 Digi-Egg, total 6-12. Los **Tamers, todos distintos** (1 copia cada uno, v0.9.1); los Digi-Egg, hasta 4 copias por número de carta. |
 | ¿Cuesta memoria mover un Tamer a batalla? | El primero no. Del segundo en adelante, 2 de memoria. |
 | ¿Se puede perder el último Tamer? | No por remoción rival — el último Tamer en batalla no puede ser elegido ni afectado por efectos del rival (§2.1). Sí voluntariamente por Burst Digivolve, y ahí aplica la válvula de seguridad. |
 | ¿A qué grupo va un Digimon movido desde cría, o jugado por un efecto? | Movido desde cría: lo declara el jugador al moverlo, igual que al jugarlo. Jugado por un efecto: a un grupo con Tamer, a elección de quien controla el efecto. |
